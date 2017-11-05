@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kimbsy</groupId>
+    <artifactId>dispatch.lib</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <spring.cloud.aws.version>1.1.0.RELEASE</spring.cloud.aws.version>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Cloud Modules -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-aws-messaging</artifactId>
+            <version>${spring.cloud.aws.version}</version>
+        </dependency>
+
+        <!-- Misc Dependencies -->
+        <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>dispatch.lib-s3-release-repo</id>
+            <name>Release Repository for dispatch.lib</name>
+            <url>s3://repo.com.kimbsy/dispatch.lib/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>dispatch.lib-s3-snapshot-repo</id>
+            <name>Snapshot Repository for dispatch.lib</name>
+            <url>s3://repo.com.kimbsy/dispatch.lib/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>dispatch.lib-s3-release-repo</id>
+            <name>S3 Release Repository for dispatch.lib</name>
+            <url>s3://repo.com.kimbsy/dispatch.lib/release</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>dispatch.lib-s3-snapshot-repo</id>
+            <name>S3 Snapshot Repository for dispatch.lib</name>
+            <url>s3://repo.com.kimbsy/dispatch.lib/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.springframework.build</groupId>
+                <artifactId>aws-maven</artifactId>
+                <version>5.0.0.RELEASE</version>
+            </extension>
+        </extensions>
+    </build>
+
+</project>
